@@ -23,6 +23,13 @@ export function loadCalibrationTemplate(): CalibrationTemplate {
 export function saveCalibrationTemplate(template: CalibrationTemplate): void {
   localStorage.setItem(KEYS.calibration, JSON.stringify(template))
 }
+export function isTemplateComplete(): boolean {
+  const template = loadCalibrationTemplate()
+
+  return Object.values(template.pages).every((page) => {
+    return page.fields.length > 0
+  })
+}
 
 // ---------------------------------------------------------------------------
 // Config de Google Forms
