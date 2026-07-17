@@ -23,12 +23,10 @@ export function loadCalibrationTemplate(): CalibrationTemplate {
 export function saveCalibrationTemplate(template: CalibrationTemplate): void {
   localStorage.setItem(KEYS.calibration, JSON.stringify(template))
 }
-export function isTemplateComplete(): boolean {
-  const template = loadCalibrationTemplate()
+export function isTemplateComplete(template?: CalibrationTemplate): boolean {
+  const currentTemplate = template ?? loadCalibrationTemplate()
 
-  return Object.values(template.pages).every((page) => {
-    return page.fields.length > 0
-  })
+  return Object.keys(currentTemplate.pages).length === 4
 }
 
 // ---------------------------------------------------------------------------
